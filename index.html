@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Duelist Idle Academy — simulador idle de aventura no mundo de Yu-Gi-Oh! GX.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎴</text></svg>">
+    <title>Duelist Idle Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div id="game-container">
+
+    <!-- Tela de Criação -->
+    <div id="screen-creation" class="screen">
+        <h1>Duelist Idle Academy</h1>
+        <p class="subtitle">A Jornada do Rei dos Jogos</p>
+
+        <div class="form-group">
+            <label for="playerName">Seu Nome:</label>
+            <input type="text" id="playerName" value="Cyro">
+        </div>
+
+        <div class="selection-section">
+            <div class="selection-title">ESCOLHA SEU DECK</div>
+            <div class="card-grid" id="deck-grid"></div>
+        </div>
+
+        <div class="selection-section">
+            <div class="selection-title">SEU MONSTRO ÁS</div>
+            <div class="card-grid" id="ace-grid">
+                <p class="empty-hint">Selecione um Deck primeiro...</p>
+            </div>
+        </div>
+
+        <div class="selection-section">
+            <div class="selection-title">ESCOLHA SEU ESPÍRITO GUARDIÃO</div>
+            <div class="card-grid" id="spirit-grid"></div>
+        </div>
+
+        <button id="btn-start" class="btn-primary" onclick="startGame()" disabled>Selecionar Cartas para Iniciar</button>
+    </div>
+
+    <!-- HUD Principal -->
+    <div id="hud">
+        <span class="hud-hp">❤️ HP: <span id="v-hp">3</span></span>
+        <span class="hud-dp">🪙 DP: <span id="v-dp">0</span></span>
+        <span class="hud-atk">⚔️ ATK: <span id="v-atk">0</span></span>
+        <span class="hud-int">🧠 INT: <span id="v-int">0</span></span>
+        <button class="btn-inventario" onclick="abrirInventario()">🎒 Inventário</button>
+    </div>
+
+    <!-- Modal de Inventário -->
+    <div id="modal-inventario" class="modal">
+        <h2>Sua Mochila</h2>
+        <div id="inv-conteudo"></div>
+        <button onclick="fecharInventario()" class="btn-primary">Fechar Mochila</button>
+    </div>
+
+    <!-- Barra de Progresso do Dia -->
+    <div id="idle-progress-container">
+        <div id="idle-progress-bar"></div>
+    </div>
+
+    <!-- Palco / Área Visual -->
+    <div id="stage">
+        <div id="stage-overlay">Mês 1 - Semana 1 - <span id="v-dia">Segunda-feira</span></div>
+        <div id="foco-overlay">Foco: ⚔️ Duelos</div>
+        <img id="stage-image" src="" alt="Cenário">
+    </div>
+
+    <!-- Mão do jogador (relíquias ativáveis) -->
+    <div id="player-hand"></div>
+
+    <!-- Caixas de Interação -->
+    <div id="dialog-box"></div>
+    <div id="action-panel"></div>
+
+    <!-- Tela Final (Fim de Jogo) -->
+    <div id="screen-ending" class="screen" style="display: none;">
+        <h2>Resultado da Carreira</h2>
+        <div id="id-card">
+            <div class="id-title">Licença de Duelista</div>
+            <div class="id-stats">
+                <div>👤 Nome: <span id="id-name"></span></div>
+                <div>🎴 Deck: <span id="id-deck"></span></div>
+                <div>⚔️ ATK: <span id="id-atk"></span></div>
+                <div>🧠 INT: <span id="id-int"></span></div>
+                <div>🎓 Status: <span id="id-year"></span></div>
+            </div>
+            <div class="id-rank" id="id-rank-title">Eliminado</div>
+        </div>
+        <p id="id-motivo" class="ending-motivo"></p>
+        <button onclick="baixarCarteirinha()" class="btn-primary">📸 Baixar Carteirinha</button>
+        <button onclick="reiniciarJogo()">Jogar Novamente</button>
+    </div>
+</div>
+
+<!-- Importação dos Scripts (Ordem importa!) -->
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
